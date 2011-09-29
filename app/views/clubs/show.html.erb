@@ -1,0 +1,36 @@
+<h1>Club</h1>
+
+<p><strong>Code: </strong><%= @club.code %></p>
+<p><strong>Name: </strong><%= @club.name %></p>
+<p><strong>Contact: </strong><%= @club.contact %></p>
+<p><strong>Notes: </strong><%= @club.notes %></p>
+
+<%= link_to 'Edit', edit_club_path %>
+<%= link_to 'Back', clubs_path %>
+
+<h2>Lofts</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Owner</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @club.lofts.each do |loft| %>
+  <tr>
+    <td><%= loft.name %></td>
+    <td><%= loft.owner %></td>
+    <td><%= link_to 'Show', loft %></td>
+    <td><%= link_to 'Edit', edit_loft_path(loft) %></td>
+    <td><%= link_to 'Del', loft, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New loft', new_loft_path %>
+
