@@ -1,0 +1,27 @@
+<h1>Race Stations</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @race_stations.each do |race_station| %>
+  <tr>
+    <td><%= race_station.code %></td>
+    <td><%= race_station.name %></td>
+    <td><%= link_to 'Show', race_station %></td>
+    <td><%= link_to 'Edit', edit_race_station_path(race_station) %></td>
+    <td><%= link_to 'Del', race_station, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New race station', new_race_station_path %>
+
+

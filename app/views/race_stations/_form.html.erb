@@ -1,10 +1,10 @@
-<%= form_for(@loft) do |f| %>
-  <% if @loft.errors.any? %>
+<%= form_for(@race_station) do |f| %>
+  <% if @race_station.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@loft.errors.count, "error") %> prohibited this loft from being saved:</h2>
+      <h2><%= pluralize(@race_station.errors.count, "error") %> prohibited this race_station from being saved:</h2>
 
       <ul>
-      <% @loft.errors.full_messages.each do |msg| %>
+      <% @race_station.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :owner %><br />
-    <%= f.text_field :owner %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :lat %><br />
@@ -26,10 +26,6 @@
   <div class="field">
     <%= f.label :long %><br />
     <%= f.text_field :long %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br />
-    <%= f.text_field :notes %>
   </div>
   <div class="actions">
     <%= f.submit %>

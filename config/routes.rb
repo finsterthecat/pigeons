@@ -1,6 +1,12 @@
 Pigeons::Application.routes.draw do
+  root :to => "club#index"
   resources :clubs
   resources :lofts
+  resources :race_stations
+
+  #Update distance from station id to loft
+  put 'race_stations/:id/distance' => 'race_stations#update_distances'
+  put 'lofts/:id/distance' => 'lofts#update_distances'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

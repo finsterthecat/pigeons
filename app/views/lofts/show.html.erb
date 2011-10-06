@@ -1,9 +1,43 @@
 <h1>Loft</h1>
 
 <p><strong>Name: </strong><%= @loft.name %></p>
+<p><strong>Lat: </strong><%= @loft.lat %></p>
+<p><strong>Long: </strong><%= @loft.long %></p>
 <p><strong>Contact: </strong><%= @loft.owner %></p>
 <p><strong>Notes: </strong><%= @loft.notes %></p>
 
 <%= link_to 'Edit', edit_loft_path %>
 <%= link_to 'Back', @loft.club %>
+
+<h2>Distances</h2>
+
+<%= form_for @loft, :url =>
+{:action => :update_distances} do |loft_form| %>
+  <%= loft_form.hidden_field :id %>
+  <table>
+    <tr>
+      <th>Loc</th>
+      <th>Distance</th>
+    </tr>
+
+    <% @loft.all_race_distances.each do |race_distance| %>
+      <%= loft_form.fields_for 'race_distances[]', race_distance do |distance_fields| %>
+        <tr>
+          <td>
+            <%= link_to(race_distance.race_station.name, 
+                        race_station_path(race_distance.race_station.id)) %>
+          </td>
+          <td>
+            <%= distance_fields.text_field :distance_meters %>
+            <%= distance_fields.hidden_field :race_station_id %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <div class="actions">
+    <%= loft_form.submit %>
+  </div>
+<% end %>
+
 

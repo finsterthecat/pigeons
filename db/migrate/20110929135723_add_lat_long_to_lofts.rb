@@ -1,7 +1,7 @@
 class AddLatLongToLofts < ActiveRecord::Migration
   def self.up
-    add_column :lofts, :lat, :decimal
-    add_column :lofts, :long, :decimal
+    add_column :lofts, :lat, :decimal, :limit => 90
+    add_column :lofts, :long, :decimal, :limit => 90
   end
 
   def self.down

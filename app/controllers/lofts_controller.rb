@@ -35,4 +35,14 @@ class LoftsController < ApplicationController
     @loft.destroy
     redirect_to(lofts_url)
   end
+
+  def update_distances
+     @loft = Loft.find(params[:id])
+     distances = params[:loft][:race_distances]
+     distances.each do |d|
+       @loft.update_race_distance(d[:race_station_id], d[:distance_meters])
+     end
+     redirect_to @loft, :notice => "Distances successfully updated."
+  end
+
 end

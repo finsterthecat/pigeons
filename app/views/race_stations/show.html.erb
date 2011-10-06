@@ -1,0 +1,41 @@
+<h1>Race Station</h1>
+
+<p><strong>Code: </strong><%= @race_station.code %></p>
+<p><strong>Name: </strong><%= @race_station.name %></p>
+<p><strong>Lat: </strong><%= @race_station.lat %></p>
+<p><strong>Long: </strong><%= @race_station.long %></p>
+
+<%= link_to 'Edit', edit_race_station_path %>
+<%= link_to 'Back', race_stations_path %>
+
+<h2>Distances</h2>
+
+<%= form_for @race_station, :url =>
+    {:action => :update_distances} do |race_station_form| %>
+  <%= race_station_form.hidden_field :id %>
+  <table>
+    <tr>
+      <th>Loft</th>
+      <th>Distance</th>
+    </tr>
+
+    <% @race_station.all_race_distances.each do |race_distance| %>
+      <%= race_station_form.fields_for 'race_distances[]', race_distance do |distance_fields| %>
+        <tr>
+          <td>
+            <%= distance_fields.hidden_field :loft_id %>
+            <%= link_to(race_distance.loft.name, loft_path(race_distance.loft.id)) %>
+          </td>
+          <td>
+            <%= distance_fields.text_field :distance_meters %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <div class="actions">
+    <%= race_station_form.submit %>
+  </div>
+<% end %>
+
+
